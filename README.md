@@ -10,4 +10,4 @@ Figma: https://www.figma.com/file/fTjMNC1fk3CsR99qFOLgh9/aDiploma?type=design&no
 
 Pull request: https://github.com/LogosLegend/movies-explorer-api-and-frontend/pull/1
 
-"https://github.com/LogosLegend/movies-explorer-api-and-frontend/pull/1"
+`Pull request: https://github.com/LogosLegend/movies-explorer-api-and-frontend/pull/1`
