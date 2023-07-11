@@ -1,0 +1,170 @@
+.header__films {
+  margin: 0 0 0 44px;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.header__saved-films {
+  margin: 0 0 0 16px;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.header__account-img {
+  height: 30px;
+  margin: 0 0 0 14px;
+}
+
+.header__account {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.header__burger-button {
+  padding: 0;
+  border: 0;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  background: url("../../images/burger.svg");
+  display: none;
+}
+
+.burger-menu {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+  min-width: 100%;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all .3s ease-in;
+  visibility: hidden;
+  z-index: 1;
+}
+
+.burger-menu_opened {
+  opacity: 1;
+  visibility: visible;
+  background: #0000004D;
+}
+
+.burger-menu__container {
+  width: 520px;
+  height: 100vh;
+  position: fixed;
+  background: #073042;
+  transition: all .3s ease-in;
+  top: 0;
+  right: -520px;
+  display: flex;
+  flex-direction: column;
+}
+
+.burger-menu__movies {
+  background: #202020;
+}
+
+.burger-menu__container_opened {
+  right: 0;
+}
+
+.button-close {
+  background: url("../../images/close.svg") no-repeat;
+  background-color: initial;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  margin: 22.44px;
+  height: 32px;
+  width: 32px;
+  padding: 0;
+  align-self: end;
+}
+
+.burger-menu__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 83px 0 0;
+}
+
+.burger-menu__link {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 28px;
+}
+
+.burger-menu__profile {
+  margin: auto auto 92px;
+  display: flex;
+}
+
+.burger-menu__link_type_active {
+  position: relative;
+}
+
+.burger-menu__link_type_active:before {
+  content: "";
+  height: 2px;
+  width: 100%;
+  top: 25px;
+  position: absolute;
+  background: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .header__films, .header__saved-films, .header__account {
+    display: none;
+  }
+
+  .header__burger-button {
+    display: block;
+  }
+
+  .block-visible {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .burger-menu__container {
+    width: calc(100vw / (520 / 520));
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header__account {
+    font-size: 14px;
+  }
+
+  .header__burger-button {
+    background: url("../../images/burger-mini.svg");
+    width: 40px;
+  }
+
+  .burger-menu__container {
+    width: 320px;
+  }
+
+  .button-close {
+    margin: 13.44px;
+  }
+
+  .burger-menu__links {
+    margin-top: 86px;
+  }
+
+  .burger-menu__link {
+    margin-bottom: 24px;
+  }
+
+  .burger-menu__profile {
+    margin-bottom: 118px;
+  }
+}

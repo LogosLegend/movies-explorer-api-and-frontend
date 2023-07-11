@@ -1,0 +1,35 @@
+.navigation {
+  background: #272727;
+}
+
+.table {
+  min-height: 66px;
+  width: 276px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.table__cell {
+  display: flex;
+}
+
+.table__link {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #fff;
+}
+
+@media screen and (max-width: 320px) {
+  .table {
+    width: 214px;
+  }
+
+  .table__link {
+    font-size: 11px;
+  }
+}
