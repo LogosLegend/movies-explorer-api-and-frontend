@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import CurrentUserContext from '../../context/CurrentUserContext.js';
 import { useInput } from '../../utils/FormValidation.js';
+import { NAME_WRONG_LENGTH, EMAIL_NOT_FOUND, EMAIL_INCORRECT } from '../../utils/constants.js';
 
 function Profile(props) {
 
@@ -38,13 +39,13 @@ function Profile(props) {
           <div className="account__info">
             <p className="account__name">Имя</p>
             <input className={`account__input ${(name.minMaxLength && name.isDirty) ? `account__input_type_error` : ``}`} required id="name" name="name" type="text" placeholder="Имя" minLength="2" maxLength="30" value={name.value} onChange={name.handleChange} onBlur={name.handleDirty} disabled={fieldDisabled ? true : ``}/>
-            <span className={`error account__span-error ${(name.minMaxLength && name.isDirty) ? `visible` : ``}`}>Имя должно содержать от 2 до 30 символов</span>
+            <span className={`error account__span-error ${(name.minMaxLength && name.isDirty) ? `visible` : ``}`}>{NAME_WRONG_LENGTH}</span>
           </div>
 
           <div className="account__info">
             <p className="account__name">E-mail</p>
             <input className={`account__input ${(email.email && email.isDirty) ? `account__input_type_error` : ``}`} required id="email" name="email" type="email" placeholder="E-mail" value={email.value} onChange={email.handleChange} onBlur={email.handleDirty} disabled={fieldDisabled ? true : ``}/>
-            <span className={`error account__span-error ${(email.email && email.isDirty) ? `visible` : ``}`}>{email.empty ? `Введите адрес электронной почты` : `Неверный адрес электронной почты`}</span>
+            <span className={`error account__span-error ${(email.email && email.isDirty) ? `visible` : ``}`}>{email.empty ? EMAIL_NOT_FOUND : EMAIL_INCORRECT}</span>
           </div>
 
           <span className={`error ${props.success ? `account__success` : `account__error`}`}>{props.message}</span>
