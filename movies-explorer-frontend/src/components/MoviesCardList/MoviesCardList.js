@@ -1,18 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useResize } from '../../utils/WindowWidth.js'
 import MoviesCard from '../MoviesCard/MoviesCard.js'
+import { NUMBER_OF_MOVIES } from '../../utils/constants.js'
 
 function MoviesCardList(props) {
 
   const [moviesVisible, setMoviesVisible] = useState([]);
   const [buttonHidden, setButtonHidden] = useState(false);
   const { movie1280, movie990, movie768, movie320 } = useResize();
-  const [moviesCount, setMoviesCount] = useState({
-    movie1280: 16,
-    movie990: 12,
-    movie768: 8,
-    movie320: 5
-  })
+  const [moviesCount, setMoviesCount] = useState(NUMBER_OF_MOVIES)
 
   useEffect(() => {
 
@@ -24,23 +20,23 @@ function MoviesCardList(props) {
 
     if (movie1280) {
 
-      newArrayMovies.length = moviesCount.movie1280;
-      count(moviesCount.movie1280)
+      newArrayMovies.length = moviesCount.Screen1280px;
+      count(moviesCount.Screen1280px)
 
     } else if (movie990) {
 
-      newArrayMovies.length = moviesCount.movie990;
-      count(moviesCount.movie990)
+      newArrayMovies.length = moviesCount.Screen990px;
+      count(moviesCount.Screen990px)
 
     } else if (movie768) {
 
-      newArrayMovies.length = moviesCount.movie768;
-      count(moviesCount.movie768)
+      newArrayMovies.length = moviesCount.Screen768px;
+      count(moviesCount.Screen768px)
 
     } else if (movie320) {
 
-      newArrayMovies.length = moviesCount.movie320;
-      count(moviesCount.movie320)
+      newArrayMovies.length = moviesCount.Screen320px;
+      count(moviesCount.Screen320px)
     }
 
     setMoviesVisible(newArrayMovies)
@@ -49,10 +45,10 @@ function MoviesCardList(props) {
 
   function handleMoviesCount() {
     setMoviesCount({
-      movie1280: moviesCount.movie1280 + 4,
-      movie990: moviesCount.movie990 + 3,
-      movie768: moviesCount.movie768 + 2,
-      movie320: moviesCount.movie320 + 2
+      Screen1280px: moviesCount.Screen1280px + 4,
+      Screen990px: moviesCount.Screen990px + 3,
+      Screen768px: moviesCount.Screen768px + 2,
+      Screen320px: moviesCount.Screen320px + 2
     })
   }
 
