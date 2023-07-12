@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import CurrentUserContext from '../../context/CurrentUserContext.js';
+import { ERROR_MESSAGE409, ERROR_MESSAGE401, UNKNOWN_ERROR_MESSAGE, DATA_UPDATE } from '../../utils/constants.js';
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
 import Movies from '../Movies/Movies.js';
@@ -29,11 +30,11 @@ function App() {
     setFieldDisabled(false);
 
     if (err === 409) {
-      setMessage('Пользователь с такой электронной почтой уже зарегистрирован')
+      setMessage(ERROR_MESSAGE409)
     } else if (err === 401) {
-      setMessage('Неправильный логин или пароль')
+      setMessage(ERROR_MESSAGE401)
     } else {
-      setMessage('Что-то пошло не так! Попробуйте ещё раз.')
+      setMessage(UNKNOWN_ERROR_MESSAGE)
     }
     console.log('Error: ' + err);
   }
@@ -86,7 +87,7 @@ function App() {
     MainApi.profile(name, email).then((userInfo) => {
       setCurrentUser(userInfo)
       setSuccess(true)
-      setMessage('Данные обновлены')
+      setMessage(DATA_UPDATE)
       setFieldDisabled(false)
     })
     .catch((err) => showError(err, setFieldDisabled));
