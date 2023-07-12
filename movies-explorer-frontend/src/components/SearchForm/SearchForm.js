@@ -11,13 +11,13 @@ function SearchForm(props) {
     return currentPath === '/movies';
   }
 
-  const search = useInput(whichPath() ? localStorage.getItem('searchText') : '' ?? '', {empty: true})
+  const search = useInput((whichPath() ? localStorage.getItem('searchText') : '') ?? '', {empty: true})
 
   const [shortMoviesValue, setShortMoviesValue] = useState(whichPath() ? localStorage.getItem('shortMovies') === 'true' : false);//Состояние чекбокса короткометражек
 
   useEffect(() => {
 
-    whichPath() ? (localStorage.getItem('searchText') && doSearch()) : withoutSearch();
+    whichPath() ? (localStorage.getItem('searchText') && doSearch(shortMoviesValue)) : withoutSearch();
   }, []);
 
   function handleButtonDisabled() {
@@ -42,7 +42,7 @@ function SearchForm(props) {
 
   function doSearch(value) {
     props.setError(false);
-    props.isLoading(true)
+    props.isLoading(true);
 
     whichPath() && localStorage.setItem('searchText', search.value);
 
@@ -81,7 +81,7 @@ function SearchForm(props) {
   function handleChangeChecked(e) {
     setShortMoviesValue(e.target.checked);
     whichPath() && localStorage.setItem('shortMovies', e.target.checked);
-    doSearch(e.target.checked);
+    localStorage.getItem('searchText') && doSearch(e.target.checked);
   }
 
   return(
