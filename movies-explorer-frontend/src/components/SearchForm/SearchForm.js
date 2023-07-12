@@ -82,7 +82,7 @@ function SearchForm(props) {
   function handleChangeChecked(e) {
     setShortMoviesValue(e.target.checked);
     whichPath() && localStorage.setItem('shortMovies', e.target.checked);
-    localStorage.getItem('searchText') && doSearch(e.target.checked);
+    (whichPath() ? localStorage.getItem('searchText') : localStorage.getItem('savedMovies').length > 2) && doSearch(e.target.checked);
   }
 
   return(
