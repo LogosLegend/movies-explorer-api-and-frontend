@@ -2,6 +2,7 @@ import { useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm.js'
 import Preloader from '../Preloader/Preloader.js'
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js'
+import { MOVIE_UNKNOWN_ERROR, MOVIE_NOT_FOUND } from '../../utils/constants.js';
 
 function Movies(props) {
 
@@ -25,11 +26,11 @@ function Movies(props) {
   function mainError() {
     if (error) {
 
-      return 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
+      return MOVIE_UNKNOWN_ERROR;
 
     } else if (error === 0) {
 
-      return 'Ничего не найдено';
+      return MOVIE_NOT_FOUND;
     }
   }
 
