@@ -75,7 +75,8 @@ function App() {
   const handleOnClickNavigateProfile = () => {navigate('/profile'); clearMessage()}
 
   function handleProfile(name, email) {
-    MainApi.profile(name, email).then((res) => {
+    MainApi.profile(name, email).then((userInfo) => {
+      setCurrentUser(userInfo);
       setSuccess(true);
       setMessage('Данные обновлены')
     })
