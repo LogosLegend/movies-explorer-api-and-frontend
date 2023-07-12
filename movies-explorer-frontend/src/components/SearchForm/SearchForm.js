@@ -2,6 +2,7 @@ import { useInput } from '../../utils/FormValidation.js';
 import { useState, useEffect } from 'react';
 import Find from '../../images/find.svg';
 import { getContent } from '../../utils/MoviesApi.js';
+import { SEARCH_NOT_FOUND } from '../../utils/constants.js';
 
 function SearchForm(props) {
 
@@ -85,24 +86,24 @@ function SearchForm(props) {
   }
 
   return(
-      <div className="search">
-        <form onSubmit={handleSubmit} className="search__form"> 
-          <input className="search__input" name="search" required placeholder="Фильм" type="text" autoComplete="off"  value={search.value} onChange={search.handleChange} onBlur={search.handleDirty}/>
+    <div className="search">
+      <form onSubmit={handleSubmit} className="search__form"> 
+        <input className="search__input" name="search" required placeholder="Фильм" type="text" autoComplete="off"  value={search.value} onChange={search.handleChange} onBlur={search.handleDirty}/>
 
-          <button type="submit" className={`search__button-submit button-hovered ${handleButtonDisabled() ? `` : `search__button-submit_disable`}`} disabled={handleButtonDisabled() ? `` : true}>
-            <img src={Find} alt="Найти" />
-          </button>
-        </form>
-        <span className={`error search__span-error ${(search.empty && search.isDirty) ? `visible` : ``}`}>Нужно ввести ключевое слово</span>
+        <button type="submit" className={`search__button-submit button-hovered ${handleButtonDisabled() ? `` : `search__button-submit_disable`}`} disabled={handleButtonDisabled() ? `` : true}>
+          <img src={Find} alt="Найти" />
+        </button>
+      </form>
+      <span className={`error search__span-error ${(search.empty && search.isDirty) ? `visible` : ``}`}>{SEARCH_NOT_FOUND}</span>
 
-        <div className="selectbox">
-          <label className="selectbox__switch" htmlFor="selectbox__input">
-            <input id="selectbox__input" className="selectbox__input" type="checkbox" checked={shortMoviesValue} onChange={handleChangeChecked}/>
-            <span className="selectbox__round"></span>
-          </label>
-          <p className="selectbox__subtitle">Короткометражки</p>
-        </div>
+      <div className="selectbox">
+        <label className="selectbox__switch" htmlFor="selectbox__input">
+          <input id="selectbox__input" className="selectbox__input" type="checkbox" checked={shortMoviesValue} onChange={handleChangeChecked}/>
+          <span className="selectbox__round"></span>
+        </label>
+        <p className="selectbox__subtitle">Короткометражки</p>
       </div>
+    </div>
   );
 }
 
