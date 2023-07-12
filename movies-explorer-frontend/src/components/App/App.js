@@ -24,13 +24,21 @@ function App() {
 
   const navigate = useNavigate();
 
-  function showError(err) {
+  function showError(err, setFieldDisabled) {
     setSuccess(false);
-    err === 409 ? setMessage('Пользователь с такой электронной почтой уже зарегистрирован') : setMessage('Что-то пошло не так! Попробуйте ещё раз.')
+    setFieldDisabled(false);
+
+    if (err === 409) {
+      setMessage('Пользователь с такой электронной почтой уже зарегистрирован')
+    } else if (err === 401) {
+      setMessage('Неправильный логин или пароль')
+    } else {
+      setMessage('Что-то пошло не так! Попробуйте ещё раз.')
+    }
     console.log('Error: ' + err);
   }
 
-  function showErrorGettingData(err) {
+  function showDefaultError(err) {
     console.log('Error: ' + err);
   }
 
@@ -43,7 +51,7 @@ function App() {
           setLoggedIn(true)
           setCurrentUser(userInfo);
 
-      }).catch((err) => {showErrorGettingData(err); setJwtExist(false)});
+      }).catch((err) => {showDefaultError(err); setJwtExist(false)});
 
     } else {//А если JWT не существует или он некорректный, то ProtectedRoute не будет ждать и перенаправит пользователя на /signin
 
@@ -59,7 +67,7 @@ function App() {
       .then((savedMovies) => {
         localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
       })
-      .catch((err) => showErrorGettingData(err));
+      .catch((err) => showDefaultError(err));
     }
   }, [loggedIn, jwt]);
 
@@ -74,32 +82,35 @@ function App() {
   const handleOnClickNavigateSavedMovies = () => {navigate('/saved-movies'); clearMessage()}
   const handleOnClickNavigateProfile = () => {navigate('/profile'); clearMessage()}
 
-  function handleProfile(name, email) {
+  function handleProfile(name, email, setFieldDisabled) {
     MainApi.profile(name, email).then((userInfo) => {
-      setCurrentUser(userInfo);
-      setSuccess(true);
+      setCurrentUser(userInfo)
+      setSuccess(true)
       setMessage('Данные обновлены')
+      setFieldDisabled(false)
     })
-    .catch((err) => showError(err));
+    .catch((err) => showError(err, setFieldDisabled));
   }
 
-  function handleRegister(name, email, password) {
+  function handleRegister(name, email, password, setFieldDisabled) {
     MainApi.register(name, email, password).then((res) => {
       clearMessage()
-      handleLogin(email, password)
+      handleLogin(email, password, setFieldDisabled)
+      setFieldDisabled(false)
     })
-    .catch((err) => showError(err));
+    .catch((err) => showError(err, setFieldDisabled));
   }
 
-  function handleLogin(email, password) {
+  function handleLogin(email, password, setFieldDisabled) {
     MainApi.login(email, password).then((res) => {
       localStorage.setItem('jwt', res.token);
       clearMessage()
-      setLoggedIn(true);
+      setLoggedIn(true)
       setJwtExist(true)
+      setFieldDisabled(false)
       navigate('/movies')
     })
-    .catch((err) => showError(err));
+    .catch((err) => showError(err, setFieldDisabled));
   }
 
   function handleExit() {
@@ -109,7 +120,7 @@ function App() {
       setJwtExist(false)
       navigate('/')
     })
-    .catch((err) => showError(err));
+    .catch((err) => showDefaultError(err));
   }
 
   function handleSavedMovieClick(intersection, setMark, movie) {
@@ -136,7 +147,7 @@ function App() {
       setMark(true)
     }
     })
-    .catch((err) => showErrorGettingData(err));
+    .catch((err) => showDefaultError(err));
   }
 
 return (
