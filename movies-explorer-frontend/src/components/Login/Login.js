@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useInput } from '../../utils/FormValidation.js';
+import { EMAIL_NOT_FOUND, EMAIL_INCORRECT, PASSWORD_NOT_FOUND } from '../../utils/constants.js';
 
 function Login(props) {
 
@@ -27,13 +28,13 @@ function Login(props) {
           <div className="auth__input-container">
             <input className={`auth__input ${(email.email && email.isDirty) ? `auth__input_type_error` : ``}`} required id="email" name="email" type="email" placeholder="E-mail" value={email.value} onChange={email.handleChange} onBlur={email.handleDirty} disabled={fieldDisabled ? true : ``}/>
             <label className="auth__label" htmlFor="email" title="E-mail"></label>
-            <span className={`error auth__span-error ${(email.email && email.isDirty) ? `visible` : ``}`}>{email.empty ? `Введите адрес электронной почты` : `Неверный адрес электронной почты`}</span>
+            <span className={`error auth__span-error ${(email.email && email.isDirty) ? `visible` : ``}`}>{email.empty ? EMAIL_NOT_FOUND : EMAIL_INCORRECT}</span>
           </div>
 
           <div className="auth__input-container">
             <input className={`auth__input ${(password.empty && password.isDirty) ? `auth__input_type_error` : ``}`} required id="password" name="password" type="password" placeholder="Пароль" value={password.value} onChange={password.handleChange} onBlur={password.handleDirty} disabled={fieldDisabled ? true : ``}/>
             <label className="auth__label" htmlFor="password" title="Пароль"></label>
-            <span className={`error auth__span-error ${(password.empty && password.isDirty) ? `visible` : ``}`}>Введите пароль</span>
+            <span className={`error auth__span-error ${(password.empty && password.isDirty) ? `visible` : ``}`}>{PASSWORD_NOT_FOUND}</span>
           </div>
 
           <span className="error auth__error">{props.message}</span>
