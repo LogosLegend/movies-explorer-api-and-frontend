@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function MoviesCardList(props) {
+function MoviesCard(props) {
 
   const currentPath = window.location.pathname;
 
@@ -52,9 +52,8 @@ function MoviesCardList(props) {
           <button className={movieSaveButtonClassName} type="button" onClick={handleSavedMovie}></button>
         </div>
       </div>
-      )
+    )
   }
-
 
   return(
     <>
@@ -63,4 +62,4 @@ function MoviesCardList(props) {
   );
 }
 
-export default MoviesCardList;
+export default MoviesCard;
