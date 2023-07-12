@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import '../../utils/constants.js';
 
 function MoviesCardList(props) {
 
@@ -24,6 +23,17 @@ function MoviesCardList(props) {
     whichPath() ? props.onSavedMovie(intersection, setMark, props.movie) : props.onSavedMovie([props.movie], setDeleteMovie)
   }
 
+  function duration() {
+    const hours = Math.trunc(props.duration / 60);
+    const minutes = props.duration % 60;
+
+    if (hours !== 0) {
+      return `${hours}ч${minutes}м`
+    } else {
+      return `${minutes}м`
+    }
+  }
+
   const movieSaveButtonClassName = (`${whichPath() ? `gallery__saved-button` : `gallery__delete-button`} button-hovered ${mark ? `gallery__saved-button_type_active` : ``}`);
   function render() {
     return (
@@ -36,7 +46,7 @@ function MoviesCardList(props) {
   
           <div className="gallery__info">
             <h2 className="gallery__title">{props.nameRU}</h2>
-            <p className="gallery__duration">{Math.trunc(props.duration / 60) + 'ч' + props.duration % 60 + 'м'}</p>
+            <p className="gallery__duration">{duration()}</p>
           </div>
   
           <button className={movieSaveButtonClassName} type="button" onClick={handleSavedMovie}></button>
