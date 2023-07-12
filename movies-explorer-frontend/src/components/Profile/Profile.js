@@ -1,17 +1,26 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import CurrentUserContext from '../../context/CurrentUserContext.js';
 import { useInput } from '../../utils/FormValidation.js';
 
 function Profile(props) {
 
   const currentUser = useContext(CurrentUserContext);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const name = useInput(currentUser.name, {minMaxLength: {min: 2, max: 30}});
   const email = useInput(currentUser.email, {empty: true, email: true});
 
-  function handleButtonDisabled() {
-    return name.inputValid && email.inputValid && (name.value !== currentUser.name || email.value !== currentUser.email);
-  }
+  useEffect(() => {
+
+    if ((name.value !== currentUser.name || email.value !== currentUser.email) && name.inputValid && email.inputValid) {
+
+      setButtonDisabled(false)
+      
+    } else {
+
+      setButtonDisabled(true)
+    }
+  }, [name, email, currentUser]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -21,7 +30,7 @@ function Profile(props) {
   return (
     <main className="content account">
       <section className="account__container">
-        <h2 className="account__title">Привет, Виталий!</h2>
+        <h2 className="account__title">{`Привет, ${currentUser.name}!`}</h2>
 
         <form onSubmit={handleSubmit} className="account__form">
           <div className="account__info">
@@ -37,7 +46,7 @@ function Profile(props) {
           </div>
 
           <span className={`error ${props.success ? `account__success` : `account__error`}`}>{props.message}</span>
-          <button className={`account__button account__submit-button button-without-styles button-hovered ${handleButtonDisabled() ? `` : `account__submit-button_disable`}`} disabled={handleButtonDisabled() ? `` : true}>Редактировать</button>
+          <button className={`account__button account__submit-button button-without-styles button-hovered ${buttonDisabled ? `account__submit-button_disable` : ``}`} disabled={buttonDisabled ? true : ``}>Редактировать</button>
         </form>
 
         <button className="account__button account__exit-button button-without-styles button-hovered" onClick={props.onExit}>Выйти из аккаунта</button>
