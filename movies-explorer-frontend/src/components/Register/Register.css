@@ -1,0 +1,155 @@
+.auth {
+  margin: 40px 0 0;
+}
+
+.auth__container {
+  max-width: 396px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth__title {
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 62px;
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  height: 358px;
+}
+
+.auth__input-container {
+  position: relative;
+  display: grid;
+}
+
+.auth__input {
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+  height: 46px;
+  padding: 0 15px;
+  background: #2f2f2f;
+  color: #fff;
+}
+
+.auth__input::placeholder {
+  color: #8b8b8b;
+}
+
+.auth__input_type_error {
+  color: #ee3465;
+}
+
+.auth__span-error {
+  margin: 10px 0 20px;
+  visibility: hidden;
+}
+
+.auth__error {
+  font-size: 14px;
+  line-height: 17px;
+  margin: auto 0 0px;
+  text-align: center;
+}
+
+.auth__label:before {
+  content: attr(title);
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  left: 15px;
+  font-size: 13px;
+  line-height: 46px;
+  font-weight: 400;
+  color: #8b8b8b;
+  transition: all .3s;
+  pointer-events: none;
+}
+
+.auth__input:not(:placeholder-shown) + .auth__label:before,
+.auth__label_active:before {
+  line-height: 12px;
+  font-size: 10px;
+  top: -22px;
+  left: 0;
+  opacity: 1;
+}
+
+.auth__button {
+  background: #4285f4;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 500;
+  margin: 10px 0 0;
+  height: 45px;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.auth__button_disable {
+  background: #2f2f2f;
+  color: #8b8b8b;
+  opacity: .3;
+  pointer-events: none;
+}
+
+.auth__switch {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  color: #8b8b8b;
+  margin: 16px 0 0;
+  text-align: center;
+}
+
+.auth__switch-link {
+  color: #4285f4;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 320px) {
+  .auth {
+    margin-top: 50px;
+  }
+
+  .auth__title {
+    margin-bottom: 102px;
+  }
+
+  .auth__form {
+    height: 446px;
+  }
+
+  .auth__container {
+    max-width: 320px;
+  }
+
+  .auth__button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .auth__container {
+    align-items: center;
+  }
+
+  .auth__switch {
+    margin-top: 14px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

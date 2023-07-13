@@ -1,0 +1,173 @@
+.search {
+  height: 217px;
+  padding: 70px 70px 0;
+  box-sizing: border-box;
+}
+
+.search__form {
+  display: flex;
+  border-bottom: 1px solid #424242;
+}
+
+.search__input {
+  border: none;
+  box-sizing: border-box;
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 500;
+  width: 100%;
+  padding: 0 0 13px;
+  background: #202020;
+  color: #fff;
+}
+
+.search__input::placeholder {
+  color: #8b8b8b;
+}
+
+.search__span-error {
+  font-size: 13px;
+  line-height: 16px;
+  margin: 10px 0 0;
+  text-align: center;
+  visibility: hidden;
+}
+
+.search__button-submit {
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  height: 34px;
+  width: 34px;
+  padding: 0;
+  background: #4285F4;
+}
+
+.search__button-submit_disable {
+  opacity: .3;
+  pointer-events: none;
+}
+
+.selectbox {
+  display: flex;
+  align-items: center;
+  margin: 7px 0 0 1px;
+}
+
+.selectbox__switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 14px;
+}
+
+.selectbox__input {
+  display:none;
+}
+
+.selectbox__round {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #8b8b8b;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.selectbox__round:before {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 10px;
+  left: 2px;
+  bottom: 2px;
+  background: #fff;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.selectbox__input:checked + .selectbox__round {
+  background: #3ddc84;
+}
+
+.selectbox__input:checked + .selectbox__round:before {
+  -webkit-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+.selectbox__round {
+  border-radius: 34px;
+}
+
+.selectbox__round:before {
+  border-radius: 50%;
+}
+
+.selectbox__subtitle {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 0 15px;
+}
+
+@media screen and (max-width: 848px) {
+  .search {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .selectbox {
+    justify-content: flex-end;
+    margin-top: 4px;
+    margin-right: 1px;
+    margin-left: 0;
+  }
+
+  .selectbox__switch {
+    -webkit-order: 2;
+    order: 2;
+  }
+
+  .selectbox__subtitle {
+    -webkit-order: 1;
+    order: 1;
+    margin-left: 0;
+    margin-right: 17px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .search {
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 84px;
+  }
+
+  .search__input {
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 0;
+  }
+
+  .search__form {
+    padding-bottom: 9px;
+  }
+
+  .selectbox__subtitle {
+    font-size: 11px;
+    line-height: 18px;
+    margin-right: 14px;
+  }
+
+  .selectbox {
+    justify-content: center;
+    margin-top: 41px;
+  }
+}

@@ -1,0 +1,52 @@
+.body {
+  background: #202020;
+  font-family: 'Inter', Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.button-hovered:hover {
+  opacity: .6;
+}
+
+.button-without-styles {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+.error {
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 400;
+  color: #ee3465;
+  display: block;
+}
+
+.main-error {
+  margin: 0 auto;
+  padding: 0 30px;
+  text-align: center;
+  max-width: 568px;
+  font-size: 15px;
+  line-height: 19px;
+  font-weight: 500;
+}
+
+.hidden {
+  visibility: hidden !important;
+}
+
+.visible {
+  visibility: visible !important;
+}

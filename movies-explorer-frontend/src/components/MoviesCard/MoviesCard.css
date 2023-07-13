@@ -1,0 +1,88 @@
+.gallery__film {
+  border-radius: 10px;
+  background: #222;
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05);
+}
+
+.gallery__img {
+  border-radius: 10px 10px 0 0;
+  display: block;
+  height: 151px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.gallery__description {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 12px;
+}
+
+.gallery__info {
+  width: calc(100% - 20px);
+}
+
+.gallery__title {
+  margin: 0 0 11px;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.gallery__duration {
+  margin: 0;
+  font-size: 11px;
+  line-height: 13px;
+  font-weight: 400;
+  color: #8b8b8b;
+}
+
+.gallery__saved-button, .gallery__delete-button {
+  border-radius: 50%;
+  padding: 0;
+  border: 0;
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+
+.gallery__delete-button {
+  background: transparent;
+}
+
+.gallery__saved-button:before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #313131; 
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.gallery__saved-button_type_active:before {
+  background: #2be080; 
+}
+
+.gallery__delete-button:before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: url(../../images/movies-delete.svg); 
+  left: 0px;
+  bottom: 4px;
+}
+
+@media screen and (max-width: 989px) {
+  .gallery__img {
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .gallery__img {
+    height: 168px;
+  }
+}
